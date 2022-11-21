@@ -1,0 +1,176 @@
+{
+    "realname_list": "Real Name List",
+    "auth": "auth",
+    "number" : "Number",
+    "username": "User Name",
+    "email": "Email",
+    "status": "Status",
+    "card_no": "Card Number",
+    "front": "Front ID",
+    "back": "Back ID",
+    "face": "Face ID",
+    "head_icon": "Profile",
+    "operation": "Operation",
+    "errortime_period" : "Please input time",
+      "error_input_amount": "Please input amount",
+
+    "create_time": "Create Time",
+    "cny_balance" : "Cny Balance",
+    "up_id": "Super User",
+    "member_list": "Member List",
+    "success": "success",
+    "pending": "pending",
+    "fail": "fail",
+    "new_user": "New User",
+
+    "product_list": "Product List",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "add": "Add",
+
+    "name": "Name",
+    "amount": "Amount",
+    "total_unit_price": "Total Unit Price",
+    "operation1" : "Action 1",
+    "operation2" : "Action 2",
+    "search_name" : "Search by name",
+
+    "order_list": "Order List",
+    "image": "Image",
+    "type": "Type",
+    "unit_price" : "Unit Price",
+    "all": "All",
+
+    "add_product" : "Add Product",
+    "time_period" : "Time Period",
+
+    "free": "Free",
+    "yes": "True",
+    "no": "False",
+    "add_sub_product": "Add Sub Product",
+    "upload_img": "Upload Image",
+    "from_link" : "From Link",
+    "description" : "Description",
+
+    "error_input_name": "Please input name",
+    "error_input_unit_price" : "Please input unit price",
+    "error_input_number": "Please input number",
+    "error_input_image_host" : "Please input image host link",
+    "error_input_fee" : "Please input feee",
+
+    "editor_placeholder" : "Insert here ..",
+
+    "main_product": "Main",
+    "sub_product": "Sub",
+
+    "withdraw_list": "Withdraw List",
+    "ali_name": "Alipay Name",
+    "ali_number": "Alipay Number",
+    "real_amount": "Real Amount",
+    "bank_acc_name": "Bank Account Name",
+    "bank_acc_number": "Bank Account Number",
+    "bank_branch_name": "Bank Branch Name",
+    "bank_name": "Bank Name",
+
+    "set_free_form": "Set Transaction Fee",
+    "transaction_fee": "Set Fee",
+    "min_amt": "Min Amount",
+    "max_amt": "Max Amount",
+    "fee_rate": "fee",
+    "alipay": "Alipay",
+
+    "bank": "Bank",
+    "honor_list": "Honor List",
+    "add_honor" : "Add Honor",
+
+    "banner_list": "Banner List",
+    "sure": "Are you sure",
+    "yes_txt": "Yes",
+    "no_txt" : "No",
+
+    "guide_list" : "Guide List",
+    "title": "Title",
+    "app_platform" : "Application Platform",
+    "update": "update",
+    "version": "version",
+    "download_link" : "Download Link",
+    "app_name": "App Name",
+    "platform": "Platform",
+    "andriod" : "Andriod",
+    "ios": "IOS",
+    "input_app_name": "Enter app name",
+    "input_app_version": "Enter app version",
+    "error_upload_file": "Please upload file",
+    "upload_app" : "Upload App",
+    "error_input_description": "Please input description",
+    "logout": "Logout",
+
+
+    "user_mgmt": "User Management",
+    "real_name_list": "Real Name List",
+    "product_mgmt" : "Product Management",
+    "order_mgmt": "Order Management",
+    "withdraw_mgmt": "Withdraw Management",
+    "app_info" : "App Info",
+    "app": "Application",
+    "404_page": "Sorry, the page you visited does not exist.",
+    "home": "Home",
+
+
+    "error_input_min": "Please input min amount",
+    "error_input_max": "Please input max amount",
+    "error_input_fee_exeed": "Please enter between 0 to 100",
+
+    "withdraw_auth": "Withdraw Auth",
+    "reason": "Reason",
+    "input_reason": "Please input reason",
+    "otp_pass": "OTP Password",
+    "input_otp_pass": "Please input password",
+
+    "error_input_email": "Please input email",
+    "add_image": "Add Image",
+
+    "add_guide": "Add Guide",
+    "error_input_title": "Please input title",
+
+
+    "sub_guide_list": "Sub Guide List",
+    "video" : "Video",
+
+    "edit_guide": "Edit Guide",
+    "error_input_app_version": "Please input  version",
+
+    "password": "Password",
+    "error_password": "Please input password",
+
+    "input_email": "Input email",
+    "input_password": "Input Password",
+    "edit_product": "Edit Product",
+     "error_time_period": "Please input time period",
+    "sub_product_list": "Sub List",
+    "start_date": "start date",
+    "end_date": "end date",
+    
+ "error_file_size": "File must smaller than 30MB!",
+ "bank_list": "Bank List",
+ "bank_version" : "Bank Version",
+ "bank_acc_no": "Bank Account Number",
+"bank_available": "Avialable",
+"bank_not_available": "Unavialable",
+
+ "input_bank_acc_name": "Enter bank account name",
+ "input_bank_acc_number": "Enter bank account number",
+ "error_input_bank_name": "Please input bank name",
+
+
+  "error_input_bank_acc_name": "Please input bank account name",
+  "error_input_bank_acc_no": "Please input bank account number",
+   "error_input_bank_branch_name" : "Please input branch name" ,
+     "product_name": "Product Name" 
+         
+
+
+
+
+}
