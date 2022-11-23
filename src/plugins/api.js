@@ -471,3 +471,18 @@ export async function EDIT_BANK(id, values) {
     })
     return await HTTP.put(url, data);
 }
+
+
+export async function EDIT_SUB_PRODUCT(id,values) {
+    let url = '/admin/api/sub-product/update';
+    let data = JSON.stringify({
+        id: id,
+        name: values.name,
+        unitPrice: values.unitPrice,
+        free: values.free,
+        fromImgUrl: values.fromImgUrl,
+        imageUrl: values.imageUrl ,
+        description: values.description 
+    })
+    return await HTTP.put(url, data);
+}

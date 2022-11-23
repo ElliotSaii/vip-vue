@@ -1,6 +1,7 @@
 <template>
 
-  <a-modal :title="t('add_guide')" :visible="visible" @cancel="closeModal()"  @ok="handleFinish"  width="40%" >
+  <a-modal :title="t('add_guide')" :visible="visible" @cancel="closeModal()"  @ok="handleFinish"  width="40%" :cancel-text="t('cancel_txt')"
+      :ok-text="t('ok_txt')">
   <a-form :model="formState" ref="formRef" name="basic" layout="vertical" autocomplete="off" @finish="handleFinish"
   >
     <a-form-item  :label="t('title')"  name="title" :rules="[{ required: true, message: t('error_input_title') }]">

@@ -4,6 +4,8 @@
     :visible="visible"
     @cancel="closeModal()"
     @ok="onOk"
+    :cancel-text="t('cancel_txt')"
+      :ok-text="t('ok_txt')"
     width="40%"
   
   >
@@ -34,10 +36,7 @@
     </a-form>
 
    
-    <template #footer>
-      <a-button key="back" @click="closeModal()"> {{t('no_txt')}} </a-button>
-      <a-button key="submit" type="primary" @click="onOk" > {{t('yes_txt')}} </a-button>
-    </template>
+
          
   </a-modal>
 </template>

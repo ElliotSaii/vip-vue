@@ -56,15 +56,15 @@ const columns = [{
   dataIndex: 'no',
   key: 'no',
 }, {
-  slotName: "name",
-  scopedSlots : {customRender: 'name', title: 'name'},
+  slotName: "bank_acc_name",
+  scopedSlots : {customRender: 'bank_acc_name', title: 'bank_acc_name'},
   dataIndex: 'name',
   key: 'name',
 
 }, 
 {
-  slotName: "bank_acc_name",
-  scopedSlots : {customRender: 'bank_acc_name', title: 'bank_acc_name'},
+  slotName: "name",
+  scopedSlots : {customRender: 'name', title: 'name'},
   dataIndex: 'accountName',
   key: 'accountName',
   ellipsis: true,

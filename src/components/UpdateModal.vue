@@ -6,6 +6,8 @@
      
       @ok="handleOk"
       width="40%"
+      :cancel-text="t('cancel_txt')"
+      :ok-text="t('ok_txt')"
       @cancel="closeModal()"
     >
      <a-form :model="formState" :rules="rules"   ref="formRef" layout="vertical">

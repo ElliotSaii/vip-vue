@@ -14,8 +14,8 @@
           </a-form-item>
 
          <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
-            <a-button type="primary" html-type="submit" >Submit</a-button>
-            <a-button style="margin-left: 10px" @click="resetForm">Clear</a-button>
+            <a-button type="primary" html-type="submit" > {{t('login')}} </a-button>
+            <a-button style="margin-left: 10px" @click="resetForm"> {{t('cls')}} </a-button>
          </a-form-item>
  </a-form>
 
@@ -72,11 +72,11 @@ import { LOGIN } from '../plugins/api';
                   localStorage.setItem("token",token);
                  
                   location.reload()
-                   message.success(t('success'),0.5);
+                   message.success(t('login_success'),0.5);
            
                  
                 }else{
-                  message.error(t('fail'),0.5);
+                  message.error(t('something_wrong'),0.5);
                 }
                  
 

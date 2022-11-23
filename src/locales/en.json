@@ -167,7 +167,15 @@
   "error_input_bank_acc_name": "Please input bank account name",
   "error_input_bank_acc_no": "Please input bank account number",
    "error_input_bank_branch_name" : "Please input branch name" ,
-     "product_name": "Product Name" 
+     "product_name": "Product Name" ,
+
+     "ok_txt": "ok",
+       "cancel_txt": "cancel",
+       "sub_product_name": "Name",
+         "login_success": "Login Success",
+       "something_wrong": "Something Wrong",
+       "login": "Login",
+       "cls": "Clear"
          
 
 

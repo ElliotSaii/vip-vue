@@ -1,6 +1,7 @@
 <template>
 
-<a-modal :visible="visible" :title="t('sub_product_list')" @cancel="closeModal()" @ok="handleFinish"  width="90%">
+<a-modal :visible="visible" :title="t('sub_product_list')" @cancel="closeModal()" @ok="handleFinish"  width="96%" :cancel-text="t('cancel_txt')"
+      :ok-text="t('ok_txt')">
   <a-table :columns="columns" :data-source="data" :pagination="false">
 
     <template #headerCell="{column}">
@@ -23,6 +24,8 @@
             <template #icon><question-circle-outlined style="color: red" /></template>
           <a-typography-text type="danger"> {{t('delete')}} </a-typography-text>
       </a-popconfirm>
+          <a-divider  type="vertical"></a-divider>
+          <a @click="editSub(record)"> {{$t('edit')}} </a>
 
       </template>
     </template>
@@ -30,9 +33,12 @@
   <a-pagination v-model:current="current" v-model:pageSize="perPage" :total="totalSub" showLessItems :hideOnSinglePage="true" @change="subProductList()"/>
 </a-modal>
 
+<EditSubProductModal :visible="isVisible" :subproduct="selectedSub" @refresh="refreshPage()" @closeDialog="closeDialog()" v-if="isVisible" />
+     
 </template>
 
 <script setup>
+import EditSubProductModal from './EditSubProductModal.vue'
 import { DELETE_SUB, SUBPRODUCTLIST } from '@/plugins/api';
 import { message } from 'ant-design-vue';
 import { ref, onMounted} from 'vue';
@@ -41,6 +47,8 @@ const props = defineProps(['visible','subProductId']);// eslint-disable-line
 const emit = defineEmits(['closeDialog']);// eslint-disable-line
 const data = ref([]);
 
+const selectedSub = ref(null);
+const isVisible = ref(false)
 const current = ref(1);
 const perPage = ref(10);
 const totalSub = ref();
@@ -59,8 +67,8 @@ const columns = [{
   key: 'no',
   fixed: 'left',
 }, {
-  slotName: 'name',
-  scopedSlots: {customRender: 'name',title: 'name'},
+  slotName: 'sub_product_name',
+  scopedSlots: {customRender: 'sub_product_name',title: 'sub_product_name'},
   dataIndex: 'subName',
   key: 'subName',
   fixed: 'left',
@@ -97,8 +105,15 @@ const columns = [{
   scopedSlots: {customRender: 'operation',title: 'operation'},
   key: 'operation',
   fixed: 'right',
-  width: 100,
+  width: 159,
 }];
+
+
+function editSub(record){
+  isVisible.value =true;
+  selectedSub.value =record;
+  console.log(record);
+}
 
 async function subProductList(){
   const productId = props.subProductId;
@@ -114,6 +129,7 @@ async function subProductList(){
               no: index + 1,
               subId: sub.id,
               subName: sub.name,
+              free: sub.free,
               description: sub.description,
               fromImgUrl: sub.fromImgUrl,
               imageUrl: sub.imageUrl,
@@ -122,6 +138,10 @@ async function subProductList(){
             }
   })
   totalSub.value = res.obj.totalElements;
+}
+
+function refreshPage(){
+  subProductList();
 }
 
  async function deleteSub(subId){
@@ -137,6 +157,10 @@ async function subProductList(){
 
 function closeModal(){
    emit('closeDialog');
+}
+
+function closeDialog(){
+  isVisible.value =false;
 }
 
 

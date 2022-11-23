@@ -1,5 +1,6 @@
 <template>
-  <a-modal :title="t('sub_guide_list')" :visible="visible" @cancel="closeModal()"  @ok="handleFinish"  width="full" >
+  <a-modal :title="t('sub_guide_list')" :visible="visible" @cancel="closeModal()"  @ok="handleFinish"  width="full" :cancel-text="t('cancel_txt')"
+      :ok-text="t('ok_txt')">
 
   <a-table :columns="columns" :data-source="dataSource" :pagination="false">
 

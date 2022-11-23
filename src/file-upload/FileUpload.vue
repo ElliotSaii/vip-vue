@@ -25,10 +25,10 @@
 import { UPLOADFILE } from "@/plugins/api";
 import { PlusOutlined, LoadingOutlined } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
-import {  ref , onMounted} from "vue";
+import {  ref , onMounted, watch} from "vue";
 
 const emit = defineEmits(['imageLink'])// eslint-disable-line
-
+const props = defineProps(['picture'])// eslint-disable-line
 function getBase64(img, callback) {
   const reader = new FileReader();
   reader.addEventListener("load", () => callback(reader.result));
@@ -102,6 +102,11 @@ import { useI18n } from "vue-i18n";
       return isImgOrVideo && isLt30M;
     };
        
+       watch(()=>{
+           imageUrl.value= props.picture
+       })
+
+      
 </script>
 <style>
 .avatar-uploader > .ant-upload {

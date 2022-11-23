@@ -5,7 +5,8 @@
     @cancel="closeModal()"
     @ok="handleFinish"
     width="20%"
-
+    :cancel-text="t('cancel_txt')"
+      :ok-text="t('ok_txt')"
   >
      <a-form :model="formState">
       <a-form-item>

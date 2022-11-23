@@ -5,6 +5,8 @@
     @cancel="closeModal()"
     @ok="onOk"
     width="40%"
+    :cancel-text="t('cancel_txt')"
+      :ok-text="t('ok_txt')"
   >
     <a-form
   ref="modalFormRef" 
@@ -17,7 +19,7 @@
  
  <a-form-item
         name="name"
-        :label="t('name')"
+        :label="t('sub_product_name')"
         
       >
         <a-input v-model:value="modalFormState.name" />
@@ -66,10 +68,8 @@
     </a-form>
 
    
-    <template #footer>
-      <a-button key="back" @click="closeModal()">Cancel</a-button>
-      <a-button key="submit" type="primary" @click="onOk" >OK</a-button>
-    </template>
+   
+   
          
   </a-modal>
 </template>
@@ -185,7 +185,7 @@ const  imageUrlLink= (value)=>{
                 [{ direction: 'rtl' }],
                 [{ font: [] }],
                 ['clean'],
-                ['link',  ],
+                ['link'  ],
               ],
               handlers: {
               },

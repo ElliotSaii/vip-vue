@@ -6,18 +6,21 @@
       :confirm-loading="loading"
       @ok="handleOk"
       width="40%"
+      :cancel-text="t('cancel_txt')"
+      :ok-text="t('ok_txt')"
       @cancel="closeModal()"
     >
      <a-form :model="formState"   ref="formRef" layout="vertical">
          
-
-          <a-form-item :label="t('name')" name= "name" :rules="[{required: true,message: t('error_input_bank_name'),trigger: 'change'}]" >
-            <a-input v-model:value="formState.name" :placeholder="t('bank_name')"/>
-          </a-form-item>
-
            <a-form-item :label="t('bank_acc_name')" name= "bankAccName"  :rules="[{required: true,message: t('error_input_bank_acc_name'),trigger: 'change'}]" >
             <a-input v-model:value="formState.bankAccName" :placeholder="t('input_bank_acc_name')"/>
           </a-form-item>
+
+
+          <a-form-item :label="t('bank_name')" name= "name" :rules="[{required: true,message: t('error_input_bank_name'),trigger: 'change'}]" >
+            <a-input v-model:value="formState.name" :placeholder="t('bank_name')"/>
+          </a-form-item>
+
 
            <a-form-item :label="t('bank_acc_number')" name= "bankAccNo"  :rules="[{required: true,message: t('error_input_bank_acc_no'),trigger: 'change'}]" >
             <a-input v-model:value="formState.bankAccNo" :placeholder="t('input_bank_acc_number')"/>

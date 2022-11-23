@@ -88,8 +88,8 @@ const columns = ref([
     key: 'no'
   },
   {
-    slotName: "name",
-    scopedSlots: {customRender: 'name', title : 'name'},
+    slotName: "product_name",
+    scopedSlots: {customRender: 'product_name', title : 'product_name'},
     dataIndex: "name",
     key: 'name'
   },

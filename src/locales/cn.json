@@ -5,7 +5,7 @@
         "number": "数字",
         "username": "姓名",
         "email": "电子邮件",
-        "status": "地位",
+        "status": "状态",
         "card_no": "卡号",
         "front": "正面身份证",
         "back": "背面身份证",
@@ -17,7 +17,7 @@
         "up_id": "超级用户 ",
         "member_list": "成员列表",
         "success": "成功",
-        "pending": "要求",
+        "pending": "待审核",
         "fail": "失败",
         "new_user": "新用户",
 
@@ -64,14 +64,14 @@
         "withdraw_list": "取款清单",
         "ali_name": "支付宝名称",
         "ali_number": "支付宝名称",
-        "real_amount": "实际金额",
-        "bank_acc_name": "银行账户名称",
-        "bank_acc_number": "银行账号",
-        "bank_branch_name": "银行分行名称",
+        "real_amount": "实际金额",  
+        "bank_acc_name": "银行",
+        "bank_acc_number": "卡号",
+        "bank_branch_name": "开户行",
         "bank_name": "银行名称",
 
         "set_free_form": "添加交易费用",
-        "transaction_fee": "交易费",
+        "transaction_fee": "手续费",
         "min_amt": "最低限度",
         "max_amt": "最大限度",
         "fee_rate": "百分率",
@@ -146,12 +146,12 @@
          "end_date": "结束日期",
          "error_file_size": "文件必须小于30MB",
          "bank_list": "银行名单",
-         "bank_version" : "银行版本",
+         "bank_version" : "是否使用",
       
 
          "bank_acc_no": "银行帐号",
-         "bank_available": "可用的转移",
-         "bank_not_available": "传输不可用",
+         "bank_available": "使用",
+         "bank_not_available": "停用",
 
          "input_bank_acc_name": "输入银行帐户名称",
          "input_bank_acc_number": "输入银行帐号",
@@ -159,7 +159,15 @@
          "error_input_bank_acc_name": "请输入银行账户名称",
          "error_input_bank_acc_no": "请输入银行账号",
        "error_input_bank_branch_name" : "请输入分支机构名称",
-       "product_name": "产品名称"
+       "product_name": "产品名称",
+
+       "sub_product_name": "任务名称",
+       "ok_txt": "证实",
+       "cancel_txt": "取消",
+       "login_success": "登录成功",
+       "something_wrong": "有点不对劲",
+         "login": "登录",
+       "cls": "清楚的"
 
         
          

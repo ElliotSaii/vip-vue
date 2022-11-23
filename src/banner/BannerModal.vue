@@ -1,5 +1,6 @@
 <template>
-  <a-modal :title="t('add_image')" :visible="visible"  @cancel="closeModal()"  @ok="handleFinish" width="25%">
+  <a-modal :title="t('add_image')" :visible="visible"  @cancel="closeModal()"  @ok="handleFinish" width="25%" :cancel-text="t('cancel_txt')"
+      :ok-text="t('ok_txt')">
   <a-form  ref="formRef"  name="add banner form"   class=""  :model="formState"    @finish="handleFinish">
     <a-form-item name="imageUrl" :rules="[{required: true, message: t('error_input_image_host')}]">
         <FileUpload @imageLink="imageUrlLink" v-model:value="formState.imageUrl"  />

@@ -100,8 +100,8 @@ const columns = [
  
 },
 {
-  slotName: "name",
-  scopedSlots: {customRender: 'name', title: 'name'},
+  slotName: "product_name",
+  scopedSlots: {customRender: 'product_name', title: 'product_name'},
   dataIndex: 'productName',
   key: 'productName'
  

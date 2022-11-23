@@ -1,6 +1,7 @@
 <template>
 
-  <a-modal :title="t('edit_product')" :visible="visible" @cancel="closeModal()" @ok="handleFinish" width="36%">
+  <a-modal :title="t('edit_product')" :visible="visible" @cancel="closeModal()" @ok="handleFinish" width="36%" :cancel-text="t('cancel_txt')"
+      :ok-text="t('ok_txt')">
   <a-form ref="formRef" name="add product form" class="" :model="formState" :rules="rules" v-bind="layout" @finish="handleFinish">    
 
     <a-form-item has-feedback :label="t('name')" name="name">

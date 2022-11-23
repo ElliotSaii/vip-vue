@@ -1,6 +1,7 @@
 <template>
 
-  <a-modal :title="t('edit_guide')" :visible="visible" @cancel="closeModal()"  @ok="handleFinish"  width="40%" >
+  <a-modal :title="t('edit_guide')" :visible="visible" @cancel="closeModal()"  @ok="handleFinish"  width="40%" :cancel-text="t('cancel_txt')"
+      :ok-text="t('ok_txt')" >
   <a-form
     ref="formRef"
     :model="formState"
