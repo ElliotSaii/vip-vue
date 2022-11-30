@@ -4,7 +4,7 @@
         "auth": "测验",
         "number": "数字",
         "username": "姓名",
-        "email": "电子邮件",
+        "email": "账号",
         "status": "状态",
         "card_no": "卡号",
         "front": "正面身份证",
@@ -17,6 +17,7 @@
         "up_id": "超级用户 ",
         "member_list": "成员列表",
         "success": "成功",
+        "upload_success": "上传成功",
         "pending": "待审核",
         "fail": "失败",
         "new_user": "新用户",
@@ -46,8 +47,8 @@
         "errortime_period" : "请输入时间",
         "free": "是否免费",
 
-        "yes": "对",
-        "no": "不",
+        "yes": "免费",
+        "no": "收费",
         "add_sub_product": "新子产品",
         "upload_img": "上传图片",
         "from_link" : "来自链接",
@@ -135,7 +136,7 @@
 
         "edit_guide": "编辑指南",
         "error_input_app_version": "请输入应用程序版本",
-        "password": "暗语",
+        "password": "密码",
         "error_password": "请输入密码",
         "input_email": "输入电子邮件",
         "input_password": "输入密码",
@@ -167,7 +168,8 @@
        "login_success": "登录成功",
        "something_wrong": "有点不对劲",
          "login": "登录",
-       "cls": "清楚的"
+       "cls": "清空",
+       "memId": "用户ID"
 
         
          

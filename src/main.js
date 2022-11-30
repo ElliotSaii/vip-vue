@@ -7,14 +7,20 @@ import store from './store';
 
 import VueDOMPurifyHTML from 'vue-dompurify-html';
 import i18n from './i18n'
+import { vue3Debounce } from 'vue-debounce';
+
+import { useI18n } from 'vue-i18n';
+
 
 
 
 const app = createApp(App)
+app.directive('debounce', vue3Debounce({lock:true}))
 app.use(store)
 app.use(router)
 app.use(i18n)
 app.use(Antd);
+
 
 app.use(VueDOMPurifyHTML
     // , {

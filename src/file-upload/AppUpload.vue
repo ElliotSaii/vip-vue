@@ -37,7 +37,13 @@ function getBase64(img, callback) {
   reader.readAsDataURL(img);
 }
 
+import {useI18n} from 'vue-i18n';
 
+const {t}= useI18n({
+  inheritLocale: true,
+  useScope: "local"
+})
+ 
 
     const loading = ref(false);
     const uploadUrl = ref("");
@@ -71,7 +77,7 @@ function getBase64(img, callback) {
       let res = await UPLOADFILE(formData);
     
       if (res.code == 200) {
-        message.success("upload success", 0.4);
+        message.success(t('upload_success'), 0.4);
         uploadUrl.value = res.obj;
         uploadLink.value = res.obj;
         // console.log("uploadLink ",uploadLink.value);
@@ -83,11 +89,11 @@ function getBase64(img, callback) {
 
 
     const beforeUpload = (file) => {
-  
+      
       const isApporIos = file;
-        // file.type === "application/vnd.android.package-archive"  ;
+        // file.type === "application/vnd.android.package-archive"  || file. ==="";
         // file.type;
-        console.log(isApporIos);
+        // console.log(""+file.type);
       // const max9MB = (1024*1024)*9; 
       // const isLt30M = file.size / 1024 / 1024 < 30;
 

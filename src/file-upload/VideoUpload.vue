@@ -27,6 +27,14 @@ import { PlusOutlined, LoadingOutlined } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
 import {  ref , onMounted} from "vue";
 
+import {useI18n} from 'vue-i18n';
+
+const {t}= useI18n({
+  inheritLocale: true,
+  useScope: "local"
+})
+ 
+
 const emit = defineEmits(['imageLink'])// eslint-disable-line
 
 function getBase64(img, callback) {
@@ -67,7 +75,7 @@ function getBase64(img, callback) {
       let res = await UPLOADFILE(formData);
     
       if (res.code == 200) {
-        message.success("upload success", 0.4);
+        message.success(t('upload_success'), 0.4);
         imageUrl.value = res.obj;
         imageLink.value = res.obj;
         loading.value=false;

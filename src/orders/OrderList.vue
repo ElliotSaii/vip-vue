@@ -7,7 +7,7 @@
 
     <a-form  layout="inline" >
     <a-form-item>
-      <a-input-search v-model:value="searchName" :placeholder="t('search_name')" style="width: 200px" @search="onSearch" >
+      <a-input-search v-model:value="searchName" v-debounce:1150ms.cancelonempty="onSearch" :debounce-events="['click', 'keyup']" :placeholder="t('search_name')" style="width: 200px" @search="onSearch" >
          <template #prefix><UserOutlined style="color: rgba(0, 0, 0, 0.25)" /></template>
       </a-input-search>
     </a-form-item>
@@ -24,7 +24,7 @@
  
     </div>
 
-    <a-table  :style="{margin:'5px'}" :columns="columns"  :data-source="dataSource"  class="components-table-demo-nested" :pagination="false" >
+    <a-table  :style="{margin:'5px'}" :columns="columns"  :data-source="dataSource"  class="components-table-demo-nested" :pagination="false" :scroll="{ y: 600 }" >
 
       <template #headerCell="{column}">
         <span> {{t(column.slotName)}} </span>
@@ -34,7 +34,7 @@
         <template v-if="column.key === 'operation'">
           <a @click="authStatus(record)" >
             
-           <span style="text: 9px"> {{t('auth')}} </span>
+           <span style="text: 9px" v-if="record.buyStatus!==2 " > {{t('auth')}} </span>
           </a>
         </template>
         <template v-if="column.key === 'imageUrl'">
@@ -50,6 +50,8 @@
            <span v-if="record.buyStatus =='3'" :style="{color: 'red'}"> {{t('fail')}} </span>
      </template>
 
+    
+
       </template>
     </a-table>
 
@@ -63,8 +65,7 @@
 import { FILTER_ORDER_STATUS, ORDERLIST, SEARCHORDER } from '@/plugins/api';
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
 import { message,Select ,} from 'ant-design-vue';
-import { cloneDeep } from 'lodash-es';
-import {  onMounted, reactive, ref } from 'vue';
+import {  onMounted, reactive, ref ,watch} from 'vue';
 import OrderModal from './OrderModal.vue'
 
 
@@ -74,6 +75,8 @@ const {t}= useI18n({
   inheritLocale: true,
   useScope: "local"
 })
+ 
+
 
 const pageSizeOptions = ref(['10','20','30','40','50'])
 
@@ -92,11 +95,18 @@ const pageSizeOptions = ref(['10','20','30','40','50'])
    
 
 const columns = [
+// {
+//   slotName: "number",
+//   scopedSlots: {customRender: 'number', title: 'number'},
+//   dataIndex: 'no',
+//   key: 'no'
+ 
+// },
 {
-  slotName: "number",
-  scopedSlots: {customRender: 'number', title: 'number'},
-  dataIndex: 'no',
-  key: 'no'
+  slotName: "memId",
+  scopedSlots: {customRender: 'memId', title: 'memId'},
+  dataIndex: 'memId',
+  key: 'memId'
  
 },
 {
@@ -166,6 +176,12 @@ searchName.value=''
  getOrderList();
  
 }
+
+watch(searchName,(currentVal,oldVal)=>{
+  if(currentVal===''){
+    getOrderList()
+  }
+})
   
   const  onSearch= async (val)=>{
       current.value=1;
@@ -200,6 +216,7 @@ searchName.value=''
     dataSource.value = list.map((product, index) => {
     return {
       no: index + 1,
+      memId: product.memberId,
       productName: product.name,
       buyAmount: product.buyAmount,
       buyStatus: product.buyStatus,

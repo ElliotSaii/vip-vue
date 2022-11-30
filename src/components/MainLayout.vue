@@ -194,6 +194,15 @@ function changeNav() {
       break;
   }
 }
+// Loading fail
+router.onError((err)=>{
+  const pattern = /Loading chunk (\d)+ failed/g;
+  const isChunkLoadFailed =err.message.match(pattern);
+  const targetPath= router.history.pending.fullPath;
+  if(isChunkLoadFailed){
+    router.replace(targetPath);
+  }
+})
 
 const logout=()=>{
  localStorage.clear();

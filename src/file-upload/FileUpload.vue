@@ -76,7 +76,7 @@ import { useI18n } from "vue-i18n";
       let res = await UPLOADFILE(formData);
     
       if (res.code == 200) {
-        message.success(t('success'), 0.4);
+        message.success(t('upload_success'), 0.4);
         imageUrl.value = res.obj;
         imageLink.value = res.obj;
          emit('imageLink',{
@@ -94,12 +94,12 @@ import { useI18n } from "vue-i18n";
       const isImgOrVideo =
         file.type === "image/jpeg" || file.type === "image/png" ||  file.type=== "video/mp4" ;
       // const max9MB = (1024*1024)*9; 
-      const isLt30M = file.size / 1024 / 1024 < 30;
+      // const isLt30M = file.size / 1024 / 1024 < 0;
 
-      if (!isLt30M) {
-        message.error(t('error_file_size'));
-      }
-      return isImgOrVideo && isLt30M;
+      // if (!isLt30M) {
+      //   message.error(t('error_file_size'));
+      // }
+      return isImgOrVideo;
     };
        
        watch(()=>{

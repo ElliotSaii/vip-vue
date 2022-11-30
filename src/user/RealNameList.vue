@@ -59,7 +59,7 @@
 
       </template>
     </a-table>
-    <a-pagination v-model:current="current" :total="totalMember" show-less-items @change="getRealNameRequest()"/>
+    <a-pagination v-model:current="current" :total="totalMember" show-less-items :hideOnSinglePage="true" @change="getRealNameRequest()"/>
       
       <RealNameModal 
       v-if="isVisible" 
@@ -169,8 +169,13 @@ async function getRealNameRequest() {
   var res = await REALNAMEREQUEST(perPage.value,current.value);
    if(res.code ==500){
     data.value =[];
+    
    }
   var list = res.obj.list;
+
+  // if(list.length==0){
+  //   totalMember.value=0;
+  // }
 
   data.value = list.map((mem, index) => {
     return {

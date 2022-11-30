@@ -20,11 +20,12 @@ function loadLocaleMessages() {
 }
 
 const i18n = createI18n({
-  // silentFallbackWarn: true,
+  silentFallbackWarn: true,
+  missingWarn: false,
   legacy: false,
   globalInjection: true,
-  locale: localStorage.getItem('lang') || 'en',
-  // fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || 'en',
+  locale: localStorage.getItem('lang') || 'cn',
+  fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || 'cn',
   messages: loadLocaleMessages()
 })
 

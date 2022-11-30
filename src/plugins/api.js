@@ -44,13 +44,12 @@ export async function AddProduct(name, buyAmount, free, startTime,endTime) {
  * @returns 
  */
 
-export async function ADDSUBPRODUCT(productId, name, free, unitPrice, imageUrl, fromImageUrl, description) {
+export async function ADDSUBPRODUCT(productId, name, unitPrice, imageUrl, fromImageUrl, description) {
     const url = '/admin/api/product/subProduct/add';
     let data = JSON.stringify(
         {
             productId: productId,
             name: name,
-            free: free,
             unitPrice: unitPrice,
             imageUrl: imageUrl,
             fromImgUrl: fromImageUrl,
@@ -66,8 +65,8 @@ export async function ADDSUBPRODUCT(productId, name, free, unitPrice, imageUrl, 
  * @param {Number} pageNo 
  * @returns 
  */
-export async function PRODUCT_LIST(pageSize, pageNo) {
-    var url = `/admin/api/product/main-product/list?pageNo=${pageNo}&pageSize=${pageSize}`;
+export async function PRODUCT_LIST(pageSize, pageNo,name) {
+    var url = `/admin/api/product/main-product/list?pageNo=${pageNo}&pageSize=${pageSize}&name=${name}`;
     
     return await HTTP.get(url);
 }
@@ -235,8 +234,8 @@ export async function DELETE_SUB(subId) {
  * @param {Number} pageSize 
  * @returns 
  */
-export async function MEMBER_LIST(pageNo, pageSize) {
-    let url = `/admin/api/list?pageNo=${pageNo}&pageSize=${pageSize}`;
+export async function MEMBER_LIST(pageNo, pageSize,name) {
+    let url = `/admin/api/list?pageNo=${pageNo}&pageSize=${pageSize}&name=${name}`;
 
     return await HTTP.get(url);
 }
@@ -247,8 +246,8 @@ export async function MEMBER_LIST(pageNo, pageSize) {
  * @param {Number} pageSize 
  * @returns 
  */
-export async function SEARCH_MEMBER(name, pageNo, pageSize) {
-    let url = `/admin/api/search?name=${name}&pageNo=${pageNo}&pageSize=${pageSize}`;
+export async function SEARCH_MEMBER(name,pageNo,pageSize) {
+    let url = `/admin/api/search?name=${name}`;
 
     return await HTTP.get(url);
 }

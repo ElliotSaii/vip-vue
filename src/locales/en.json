@@ -175,7 +175,8 @@
          "login_success": "Login Success",
        "something_wrong": "Something Wrong",
        "login": "Login",
-       "cls": "Clear"
+       "cls": "Clear",
+        "memId": "User ID"
          
 
 

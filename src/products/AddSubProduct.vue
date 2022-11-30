@@ -44,7 +44,7 @@
         <a-input v-model:value="modalFormState.fromImgUrl" />
       </a-form-item> 
 
-      <a-form-item
+      <!-- <a-form-item
         name="free"
         :label="t('free')"
       >
@@ -54,7 +54,7 @@
         <Select.Option  value="true"> {{t('yes')}}</Select.Option >
 
       </Select>
-      </a-form-item> 
+      </a-form-item>  -->
 
       
       
@@ -95,7 +95,6 @@ const modalFormState = reactive({
   unitPrice: "",
   imageUrl: "",
   fromImgUrl: "",
-  free: ref("false"),
   description: null
 });
 
@@ -134,7 +133,7 @@ const onOk = ()  => {
       // modalFormRef.value.resetFields();
       // console.log('reset formState: ', toRaw(modalFormState));
       let productId = props.product.productId;
-    let res=  await ADDSUBPRODUCT(productId,values.name,values.free,values.unitPrice,values.imageUrl,values.fromImgUrl,values.description)
+    let res=  await ADDSUBPRODUCT(productId,values.name,values.unitPrice,values.imageUrl,values.fromImgUrl,values.description)
     .then((res)=>{
       if(res.code==200){
         message.success(t('success'),0.4);

@@ -24,8 +24,9 @@
       <a-input v-model:value="formState.name" />
     </a-form-item>
 
-    <a-form-item has-feedback :label="t('amount')" name="buyAmount">
-      <a-input v-model:value="formState.buyAmount"  autocomplete="off" />
+    <a-form-item has-feedback :label="t('amount')" name="buyAmount"  >
+      <a-input :value="0"  autocomplete="off" disabled v-if="formState.free =='true'"  />
+      <a-input v-model:value="formState.buyAmount"  autocomplete="off"  v-if="formState.free =='false'" />
     </a-form-item>
     <a-form-item has-feedback :label="t('free')" name="free">
 
@@ -99,7 +100,9 @@ const props = defineProps(['visible']);// eslint-disable-line
     let startTime='';
     let endTime = '';
 
-
+function handleBuyamount(){
+  formState.buyAmount=0;
+}
 
 
     let checkName = async (_rule, value) => {
@@ -113,10 +116,10 @@ const props = defineProps(['visible']);// eslint-disable-line
 
     let checkBuyAmount = async (_rule, value) => {
             
-        if(value===''){
+        if(value==='' && formState.free=='false'){
             return Promise.reject(t('error_input_amount'));
           }
-        else if(!checkPrice(value)){
+        else if(!checkPrice(value) && formState.free=='false'){
             return Promise.reject(t('error_input_number'));
           } 
           else{

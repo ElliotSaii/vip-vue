@@ -5,7 +5,7 @@
           <a-space>
             <a-button @click="addMainProduct()" > <PlusOutlined /> <span style="text: 9px"> {{$t('add')}} </span> </a-button> 
             <AddProduct v-if="isMainVisible"  :visible="isMainVisible"   @closeDialog="closeDialog()" @refresh="refreshPage()"/>
-            <a-input-search v-model:value="value" :placeholder="t('search_name')" style="width: 200px" @search="onSearch" />
+            <a-input-search v-model:value="searchName" v-debounce:1150ms.cancelonempty="onSearch" :debounce-events="['click', 'keyup']" :placeholder="t('search_name')" style="width: 200px" @search="onSearch" />
           </a-space>
 
     </div>
@@ -69,7 +69,7 @@ const perPage = ref(10);
 const isVisible = ref(false);
 const isMainVisible= ref(false);
 const selectedProduct = ref(null);
-const value = ref('');
+const searchName = ref('');
 let isSubVisible = ref(false)
 const selectedProductId= ref(null);
 
@@ -79,6 +79,11 @@ import { useI18n } from "vue-i18n";
       useScope: "local"
     });
 
+watch(searchName,(currentVal,oldVal)=>{
+  if(currentVal===''){
+    getProducts()
+  }
+})
 
 const columns = ref([
   {
@@ -139,37 +144,19 @@ isSubVisible.value =!isSubVisible.value;
 
 
 const onSearch= async (name)=>{
-    
         if(name!==''){
-          const res= await SEARCHPRODUCT(name);
-          const list = res.obj;
-
-          data.value=[]
-          data.value = list.map((product,index)=>{
-            return {
-              no: index + 1,
-              productId: product.id,
-              startTime: product.startTime,
-              endTime: product.endTime,
-              name: product.name,
-              free: product.free,
-              buyAmount: product.buyAmount,
-              createTime: product.createTime,
-              totalUnitPrice: product.totalUnitPrice
-            }
-          })
-          totalProduct.value = 1;
-        }else{
-          getProducts();
+          current.value=1;
+          getProducts()
         }
       
 
 }
 
 async function getProducts() {
-  var res = await PRODUCT_LIST(perPage.value, current.value);
+  var res = await PRODUCT_LIST(perPage.value, current.value,searchName.value);
    if(res.code ==500){
     data.value =[];
+    totalProduct.value=0;
    }
   var list = res.obj.list;
 

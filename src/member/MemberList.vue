@@ -2,11 +2,11 @@
   <div>
     <h1 > {{$t("member_list")}} </h1>
    <div id="user-list" >
-     <a-input-search v-model:value="value" :placeholder="t('search_name')" :style="{width: '200px', margin: '10px 0'}" @search="onSearch" />
+     <a-input-search v-model:value="searchName" v-debounce:1200ms.cancelonempty="onSearch"   :placeholder="t('search_name')" :style="{width: '200px', margin: '10px 0'}" @search="onSearch" />
    </div>
     <a-table
       :columns="columns"
-      :data-source="dataSource"
+      :data-source="data"
       class="components-table-demo-nested"
       :pagination="false"
     >
@@ -27,12 +27,12 @@
           >
           </a-image>
         </template> -->
-        <template v-if="column.key === 'face'">
+        <!-- <template v-if="column.key === 'face'">
           <a-image width="25px"
           :src="record.face"
           >
           </a-image>
-        </template>
+        </template> -->
         <template v-if="column.key === 'realNameStatus'">
          
            <span  v-if="record.realNameStatus =='0'" :style="{color: 'yellow'}">{{$t('new_user')}} </span>
@@ -63,38 +63,46 @@ import {  MEMBER_LIST, PRODUCT_LIST, SEARCH_MEMBER, WITHDRAWLIST,  } from "@/plu
 import { onMounted, ref, watch} from "vue";
 import { PlusOutlined ,QuestionCircleOutlined } from '@ant-design/icons-vue';
 import { message } from "ant-design-vue";
+import { debounce } from 'vue-debounce'
 
-
-const dataSource = ref([]);
+const data = ref([]);
 const current = ref(1);
 const perPage = ref(10);
 const isVisible = ref(false);
 const totalMember = ref(0);
-const value = ref('');
+const searchName = ref('');
+
 
 
 
 import { useI18n } from "vue-i18n";
 
  const { t } = useI18n({
+      
       inheritLocale: true,
       useScope: "local"
     });
 
 
 const columns = ref([
+  // {
+  //   slotName: "number",
+  //   dataIndex: "no",
+  //   key: 'no',
+  //   scopedSlots : {customRender:'number', title: 'number'}
+  // },
   {
-    slotName: "number",
-    dataIndex: "no",
-    key: 'no',
-    scopedSlots : {customRender:'number', title: 'number'}
+    slotName: "memId",
+    dataIndex: "memId",
+    key: 'memId',
+    scopedSlots : {customRender:'memId', title: 'memId'}
   },
-  {
-    slotName: "face",
-    dataIndex: "face",
-    key: 'face',
-    scopedSlots : {customRender:'face', title: 'face'}
-  },
+  // {
+  //   slotName: "face",
+  //   dataIndex: "face",
+  //   key: 'face',
+  //   scopedSlots : {customRender:'face', title: 'face'}
+  // },
   // {
   //   slotName: "back",
   //   dataIndex: "back",
@@ -107,12 +115,14 @@ const columns = ref([
   //    key: 'front',
   //    scopedSlots : {customRender:'front', title: 'front'}
   // },
+
   {
-    slotName: "create_time",
-    dataIndex: "createTime",
-     key: 'createTime',
-     scopedSlots : {customRender:'create_time', title: 'create_time'}
+    slotName: "username",
+    dataIndex: "username",
+    key: 'username',
+    scopedSlots : {customRender:'username', title: 'username'}
   },
+  
   {
     slotName: "cny_balance",
     dataIndex: "cnyBalance",
@@ -124,6 +134,12 @@ const columns = ref([
     dataIndex: "realNameStatus",
     key: 'realNameStatus',
     scopedSlots : {customRender:'status', title: 'status'}
+  },
+  {
+    slotName: "create_time",
+    dataIndex: "createTime",
+     key: 'createTime',
+     scopedSlots : {customRender:'create_time', title: 'create_time'}
   },
   {
     slotName: "up_id",
@@ -138,12 +154,7 @@ const columns = ref([
     scopedSlots : {customRender:'email', title: 'email'}
   },
 
-  {
-    slotName: "username",
-    dataIndex: "username",
-    key: 'username',
-    scopedSlots : {customRender:'username', title: 'username'}
-  },
+  
   // {
   //   title: "operation",
   //   key: "operation",
@@ -155,51 +166,39 @@ function editUser(record){
 console.log(record);
 }
 
-
-
+  watch(searchName, (currentValue, oldValue) => {
+  
+      if(currentValue===''){
+        getMemberList()
+      }
+      // if(currentValue.length > 0){
+         
+      // }
+    });
 const onSearch= async (name)=>{
-        let res =SEARCH_MEMBER(name,current.value,perPage.value);
-
-        if(res.code==500){
-          getMemberList();
-        }else if(res.code==200){
-
-           var list = res.obj.list;
-
-            dataSource.value = list.map((mem, index) => {
-              return {
-                no: index + 1,
-                face: mem.face,
-                email: mem.email,
-                username: mem.username,
-                createTime: mem.createTime,
-                upId: mem.upId,
-                realNameStatus: mem.realNameStatus,
-                cnyBalance: mem.cnyBalance,
-                front: mem.front,
-                back: mem.back,
-              }
-            })
-        }
-
+        current.value=1;
+        getMemberList();
+        
     
 }
 
 async function getMemberList() {
-  var res = await MEMBER_LIST(current.value,perPage.value)
+  var res = await MEMBER_LIST(current.value,perPage.value,searchName.value)
   
   if(res.code==500){
-    dataSource.value = []
+    data.value = []
+    totalMember.value=0;
   }
 
   var list = res.obj.list;
 
-  dataSource.value = list.map((mem, index) => {
+  data.value = list.map((mem, index) => {
     return {
       no: index + 1,
+      memId: mem.id,
       face: mem.face,
       email: mem.email,
-      username: mem.username,
+      username: mem.name,
       createTime: mem.createTime,
       upId: mem.upId,
       realNameStatus: mem.realNameStatus,
