@@ -44,7 +44,7 @@ import { message } from 'ant-design-vue';
 import { ref, onMounted} from 'vue';
 
 const props = defineProps(['visible','subProductId']);// eslint-disable-line
-const emit = defineEmits(['closeDialog']);// eslint-disable-line
+const emit = defineEmits(['closeDialog','refresh']);// eslint-disable-line
 const data = ref([]);
 
 const selectedSub = ref(null);
@@ -120,6 +120,11 @@ async function subProductList(){
 
   let res = await SUBPRODUCTLIST(productId,current.value,perPage.value)
 
+     if(res.code==500){
+      data.value=[];
+      totalSub.value=0;
+     }
+
   let list = res.obj.list;
   console.log(list);
 
@@ -145,18 +150,22 @@ function refreshPage(){
 }
 
  async function deleteSub(subId){
+  
+
   let res = await DELETE_SUB(subId);
-    
+     
     if(res.code==200){
       message.success(t('success'),0.5);
        subProductList();
     }else if(res.code ==500){
       message.error(t('fail'),0.5);
     }
+    emit('refresh')
 }
 
 function closeModal(){
    emit('closeDialog');
+   emit('refresh')
 }
 
 function closeDialog(){
@@ -166,6 +175,7 @@ function closeDialog(){
 
 async function handleFinish(){
     emit('closeDialog');
+    emit('refresh')
 }
 
 onMounted(()=>{

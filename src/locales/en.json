@@ -176,7 +176,9 @@
        "something_wrong": "Something Wrong",
        "login": "Login",
        "cls": "Clear",
-        "memId": "User ID"
+        "memId": "User ID",
+        "access_deny": "Account are locked for a while",
+        "sorry_txt": "Sorry, you are not authorized to access this page."
          
 
 

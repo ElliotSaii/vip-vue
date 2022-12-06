@@ -1,5 +1,5 @@
 <template>
-  <a-result status="404" title="404" :sub-title="t('404_page')">
+  <a-result status="404" title="404" :sub-title="t('404_page')" id="container">
     <template #extra>
       <a-button type="primary">
        <router-link to="/"><BackwardFilled /> {{t('home')}} </router-link>
@@ -19,3 +19,13 @@ import { useI18n } from "vue-i18n";
     });
     
 </script>
+
+<style scoped>
+
+#container{
+ background: #6698c4;
+ width: 100%;
+ height: 100%;
+}
+
+</style>

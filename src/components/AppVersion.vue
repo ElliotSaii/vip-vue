@@ -2,7 +2,7 @@
 <a-space direction="vertical">
 <h1> {{t('app_platform')}} </h1>
 
-<a-button disabled @click="releaseApp()"> <PlusOutlined /> {{t('add')}} </a-button>
+<a-button disabled  @click="releaseApp()"> <PlusOutlined /> {{t('add')}} </a-button>
  </a-space>
 
 

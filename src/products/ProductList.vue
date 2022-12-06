@@ -39,7 +39,7 @@
 
   </a-table>
   <a-pagination  v-model:current="current" v-model:pageSize="perPage" :total="totalProduct" show-less-items @change="getProducts()" :hideOnSinglePage="true" :pageSizeOptions="pageSizeOptions" />
-    <ViewSub v-if="isSubVisible" :subProductId="selectedProductId" :visible="isSubVisible" @closeDialog="closeDialog()" />
+    <ViewSub v-if="isSubVisible" :subProductId="selectedProductId" :visible="isSubVisible" @closeDialog="closeDialog()" @refresh="refreshPage()"/>
     <AddSubProduct v-if="isVisible" :visible="isVisible" :product="selectedProduct" @closeDialog="closeDialog()" @refresh="refreshPage(record)"/>
     <EditProductModal :visible="isEditVisible" :product="selectedProduct" v-if="isEditVisible" @refresh="refreshPage()" @closeDialog="closeDialog()" />
 </div>

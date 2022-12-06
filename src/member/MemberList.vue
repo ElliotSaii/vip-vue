@@ -35,7 +35,7 @@
         </template> -->
         <template v-if="column.key === 'realNameStatus'">
          
-           <span  v-if="record.realNameStatus =='0'" :style="{color: 'yellow'}">{{$t('new_user')}} </span>
+           <span  v-if="record.realNameStatus =='0'" :style="{color: '#fada5e'}">{{$t('new_user')}} </span>
           <span v-if="record.realNameStatus =='1'"  :style="{color: '#2db7f5'}"> {{$t('pending')}} </span>
            <span v-if="record.realNameStatus =='2'" :style="{color: '#87d068'}"> {{$t('success')}} </span>
          

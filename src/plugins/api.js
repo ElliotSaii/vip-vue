@@ -266,6 +266,21 @@ export async function ADD_HONOR(email, description, imageLink, imageUrl) {
     return await HTTP.post(url);
 }
 /**
+ * @param {number} id
+ * @param {String} email 
+ * @param {String} description 
+ * @param {String} imageLink 
+ * @param {String} imageUrl 
+ * @returns 
+ */
+export async function EDIT_HONOR(id,email, description, imageUrl) {
+    let url = `/admin/api/honor/edit?id=${id}&email=${email}&description=${description}&imageUrl=${imageUrl}`;
+
+    return await HTTP.put(url);
+}
+
+
+/**
  * 
  * @param {Number} pageNo 
  * @param {Number} pageSize 

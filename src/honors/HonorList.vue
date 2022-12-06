@@ -16,15 +16,21 @@
       <template v-if="column.dataIndex === 'imageUrl'">
         <a-image width="35px" :src="record.imageUrl" />
       </template>
+
+      <template v-if="column.dataIndex === 'operation'">
+        <a @click="editHonor(record)"> {{t('edit')}}</a>
+      </template>
     </template>
   </a-table>
  <a-pagination v-model:current="current" v-model:pageSize="perPage" :total="totalHonor" showLessItems :hideOnSinglePage="true" @change="getHonorList()"/>
 
   <HonorModal :visible="isVisible" @refresh="refreshPage()" @closeDialog="closeDialog()" />
+  <HonorEditModal :visible="isEditVisible" v-if="isEditVisible"  @refresh="refreshPage()" :honor="honorRecord" @closeDialog="closeDialog()"/>
 </template>
 
 <script setup>
 import HonorModal from './HonorModal.vue'
+import HonorEditModal from './HonorEditModal.vue'
 import { PlusOutlined ,QuestionCircleOutlined } from '@ant-design/icons-vue';
 import { ref } from '@vue/reactivity';
 import { onMounted } from '@vue/runtime-core';
@@ -32,7 +38,9 @@ import { HONOR_LIST } from '@/plugins/api';
 import {useI18n} from 'vue-i18n'
 
 const isVisible = ref(false)
+const isEditVisible = ref(false)
 const dataSource = ref([])
+const honorRecord = ref();
 
 const current =ref(1);
 const perPage = ref(10);
@@ -74,12 +82,19 @@ const columns = [{
   key: 'imageUrl',
   ellipsis: true,
 }, 
-// {
-//   title: 'Operation',
-//   dataIndex: 'operation',
-// }
+ {
+  slotName: 'operation',
+  scopedSlots: {customRender: 'operation', title: 'operation'},
+  dataIndex: 'operation',
+}
 ];
 
+function editHonor(record){
+  isEditVisible.value=true
+  honorRecord.value=record;
+ 
+  
+}
 
 function addHonor(){
     isVisible.value =true;
@@ -94,6 +109,7 @@ async function getHonorList(){
         dataSource.value = list.map((honor,index)=>{
           return{
            no: index+1,
+           id: honor.id,
            email: honor.email,
            description: honor.description,
            imageUrl: honor.imageUrl,
@@ -111,7 +127,8 @@ function refreshPage(){
 }
 
 function closeDialog(){
-    isVisible.value =!isVisible.value;
+    isVisible.value =false;
+    isEditVisible.value=false;
 }
 
 onMounted(()=>{

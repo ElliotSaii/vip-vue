@@ -68,11 +68,17 @@ const {t}= useI18n({
 
 const columns = ref([
   {
-    slotName: "number",
-    scopedSlots: {customRender: 'number', title: 'number'},
-    dataIndex: "no",
-    key: 'no'
+    slotName: "memId",
+    scopedSlots: {customRender: 'memId', title: 'memId'},
+    dataIndex: "memId",
+    key: 'memId'
   },
+  // {
+  //   slotName: "number",
+  //   scopedSlots: {customRender: 'number', title: 'number'},
+  //   dataIndex: "no",
+  //   key: 'no'
+  // },
   {
     slotName: "type",
     scopedSlots: {customRender: 'type', title: 'type'},

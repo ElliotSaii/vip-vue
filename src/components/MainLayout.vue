@@ -168,23 +168,32 @@ function changeNav() {
       openKeys.value = ['sub4'];
       break;  
 
-    case "/honor-list":
-      selectedKeys.value = ['6'];
-      openKeys.value = ['sub5'];
-      break;  
+      case "/bank-list":
+        selectedKeys.value=['6'];
+        openKeys.value=['sub4'];
+        break;
 
-    case "/banner-list":
+      case "/honor-list":
       selectedKeys.value = ['7'];
       openKeys.value = ['sub5'];
       break;  
 
+      case "/banner-list":
+        selectedKeys.value = ['8'];
+        openKeys.value = ['sub5'];
+        break;  
+     
+
+    
+
+
     case "/guide-list":
-      selectedKeys.value = ['8'];
+      selectedKeys.value = ['9'];
       openKeys.value = ['sub5'];
       break;  
 
     case "/app-version":
-      selectedKeys.value = ['9'];
+      selectedKeys.value = ['10'];
       openKeys.value = ['sub5'];
       break;  
 

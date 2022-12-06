@@ -81,16 +81,13 @@ const routes = [
         component: () => import('../banks/BankList.vue')
     },
       
-      {
-      path: '/test',
-        name: 'Test Center',
-        component: () => import('../components/TestCenter.vue')
-    },
-      
-      
-
       ]
-  }
+  },
+  //     {
+  //   path: '/test',
+  //   name: 'Test Center',
+  //   component: () => import('../components/TestCenter.vue')
+  // },
 ]
 
 const router = createRouter({

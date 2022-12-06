@@ -25,15 +25,15 @@
     </a-form-item>
 
     <a-form-item has-feedback :label="t('amount')" name="buyAmount"  >
-      <a-input :value="0"  autocomplete="off" disabled v-if="formState.free =='true'"  />
-      <a-input v-model:value="formState.buyAmount"  autocomplete="off"  v-if="formState.free =='false'" />
+      <a-input v-model:value="formState.buyAmount"  autocomplete="off" disabled v-if="formState.free =='1'"  />
+      <a-input v-model:value="formState.buyAmount"  autocomplete="off"  v-if="formState.free =='0'" />
     </a-form-item>
     <a-form-item has-feedback :label="t('free')" name="free">
 
       <Select ref="select" v-model:value="formState.free"  @change="handleSelect">
 
-        <Select.Option value="false"> {{t('no')}} </Select.Option >
-        <Select.Option  value="true">{{t('yes')}}</Select.Option >
+        <Select.Option :value="0"> {{t('no')}} </Select.Option >
+        <Select.Option  :value="1">{{t('yes')}}</Select.Option >
 
       </Select>
       
@@ -92,17 +92,14 @@ const props = defineProps(['visible']);// eslint-disable-line
     const formRef = ref();
     const formState = reactive({
       name: '',
-      buyAmount: '',
-      free: ref('false'),
+      buyAmount: 0,
+      free: ref(0),
       date: ref()
     });
 
     let startTime='';
     let endTime = '';
 
-function handleBuyamount(){
-  formState.buyAmount=0;
-}
 
 
     let checkName = async (_rule, value) => {
@@ -116,17 +113,20 @@ function handleBuyamount(){
 
     let checkBuyAmount = async (_rule, value) => {
             
-        if(value==='' && formState.free=='false'){
+        if(value==='' && formState.free==0){
             return Promise.reject(t('error_input_amount'));
           }
-        else if(!checkPrice(value) && formState.free=='false'){
+        else if(!checkPrice(value) && formState.free==0){
             return Promise.reject(t('error_input_number'));
           } 
-          else{
+        else {
             return Promise.resolve();
           }
-
+        
     };
+
+    
+
     let checkDate = async(_rule,value)=>{
       if(value==='' || value===undefined){
         return Promise.reject(t('error_time_period'));
@@ -150,11 +150,11 @@ function handleBuyamount(){
 
     const option = ref([
           {
-          value: true,
+          value: 1,
           label: 'true'
           },
          {
-          value: false,
+          value: 0,
           label: 'false'
           }
         ]);
@@ -183,6 +183,10 @@ function handleBuyamount(){
         console.log("Received values: ",values);
     
          console.log("startTime"+startTime +"--->endTime"+endTime);
+
+         if(formState.buyAmount===''){
+          formState.buyAmount=0;
+         }
 
          let res = await AddProduct(formState.name,formState.buyAmount,formState.free,startTime,endTime)
           
@@ -222,6 +226,7 @@ function closeModal() {
         validator: checkBuyAmount,
         trigger: 'change',
       }],
+     
       date: [{
         validator: checkDate,
         trigger: 'change',

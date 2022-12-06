@@ -169,8 +169,9 @@
        "something_wrong": "有点不对劲",
          "login": "登录",
        "cls": "清空",
-       "memId": "用户ID"
-
+       "memId": "用户ID",
+       "access_deny": "帐户已锁定一段时间",
+       "sorry_txt": "抱歉，您无权访问此页面。"
         
          
          

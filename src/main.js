@@ -9,7 +9,7 @@ import VueDOMPurifyHTML from 'vue-dompurify-html';
 import i18n from './i18n'
 import { vue3Debounce } from 'vue-debounce';
 
-import { useI18n } from 'vue-i18n';
+import Particles from "vue3-particles";
 
 
 
@@ -20,6 +20,7 @@ app.use(store)
 app.use(router)
 app.use(i18n)
 app.use(Antd);
+app.use(Particles)
 
 
 app.use(VueDOMPurifyHTML
